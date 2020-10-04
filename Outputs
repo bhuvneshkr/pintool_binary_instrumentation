@@ -1,0 +1,210 @@
+----------------------------------------
+  |     Warmup Part Output     |
+----------------------------------------
+
+************************************
+Output for count_basic_block
+************************************
+Command input: ./wrap count_basic_block <./hello_world | /bin/ls | /bin/ls -l | echo | cat pin.log | firefox | gedit | wget http://www.stonybrook.edu 
+
+Tool: count_basic_block
+Command: ./hello_world
+Total basic block count: 390087
+
+Tool: count_basic_block
+Command: /bin/ls
+Total basic block count: 116444
+
+Tool: count_basic_block
+Command: /bin/ls
+Command params: -l
+Total basic block count: 248431
+
+Tool: count_basic_block
+Command: echo
+Total basic block count: 49255
+
+Tool: count_basic_block
+Command: cat
+Command params: pin.log
+Total basic block count: 50745
+
+Tool: count_basic_block
+Command: firefox
+Total basic block count: 68816
+
+Tool: count_basic_block
+Command: gedit
+Total basic block count: 231535847
+
+Tool: count_basic_block
+Command: wget
+Command params: http://www.stonybrook.edu
+Total basic block count: 5458873
+
+************************************
+Output for count_malloc_mem_wrapper
+************************************
+Command input: ./wrap count_malloc_mem_wrapper <./hello_world | /bin/ls | /bin/ls -l | echo | cat pin.log | firefox | gedit | wget http://www.stonybrook.edu 
+
+Tool: count_malloc_mem_wrapper
+Command: ./hello_world
+Total malloc count : 38
+Total memory allocated : 50245
+
+Tool: count_malloc_mem_wrapper
+Command: /bin/ls
+Total malloc count : 102
+Total memory allocated : 62594
+
+Tool: count_malloc_mem_wrapper
+Command: /bin/ls
+Command params: -l
+Total malloc count : 263
+Total memory allocated : 82240
+
+Tool: count_malloc_mem_wrapper
+Command: echo
+Total malloc count : 50
+Total memory allocated : 7358
+
+Tool: count_malloc_mem_wrapper
+Command: cat
+Command params: pin.log
+Total malloc count : 50
+Total memory allocated : 141517
+
+Tool: count_malloc_mem_wrapper
+Command: firefox
+Total malloc count : 97
+Total memory allocated : 5882
+
+Tool: count_malloc_mem_wrapper
+Command: gedit
+Total malloc count : 227894
+Total memory allocated : 15703811
+
+Tool: count_malloc_mem_wrapper
+Command: wget
+Command params: http://www.stonybrook.edu
+Total malloc count : 7157
+Total memory allocated : 437602
+
+************************************
+Output for count_control_flow
+************************************
+Command input: ./wrap count_control_flow <./hello_world | /bin/ls | /bin/ls -l | echo | cat pin.log | firefox | gedit | wget http://www.stonybrook.edu 
+
+Tool: count_control_flow
+Command: ./hello_world
+Total direct flow call: 364981
+Total indirect flow call: 4843
+Total syscall: 54
+Total return: 19161
+
+Tool: count_control_flow
+Command: /bin/ls
+Total direct flow call: 112600
+Total indirect flow call: 2851
+Total syscall: 95
+Total return: 7601
+
+Tool: count_control_flow
+Command: /bin/ls
+Command params: -l
+Total direct flow call: 225329
+Total indirect flow call: 5747
+Total syscall: 297
+Total return: 21875
+
+Tool: count_control_flow
+Command: echo
+Total direct flow call: 45772
+Total indirect flow call: 671
+Total syscall: 34
+Total return: 2125
+
+Tool: count_control_flow
+Command: cat
+Command params: pin.log
+Total direct flow call: 47081
+Total indirect flow call: 692
+Total syscall: 42
+Total return: 2275
+
+Tool: count_control_flow
+Command: firefox
+Total direct flow call: 62138
+Total indirect flow call: 860
+Total syscall: 50
+Total return: 4911
+
+Tool: count_control_flow
+Command: gedit
+Total direct flow call: 172901355
+Total indirect flow call: 10177568
+Total syscall: 15820
+Total return: 37633283
+
+Tool: count_control_flow
+Command: wget
+Command params: http://www.stonybrook.edu
+Total direct flow call: 4561084
+Total indirect flow call: 124532
+Total syscall: 639
+Total return: 689779
+
+
+------------------------------------------------
+  |     Security Application Part Output     |
+------------------------------------------------
+************************************
+Output for btrace
+************************************
+Command input: ./wrap btrace <./hello_world | /bin/ls | /bin/ls -l | echo | cat pin.log | firefox | gedit | wget http://www.stonybrook.edu 
+
+Tool: btrace
+Command: ./hello_world
+(Sample Output not complete)
+brk(0x0, 0xb7f7ccec, 0xb7fa2000, 0xb7fa2000, 0x1, 0xbfb0179b)  return value: 0x8978000
+access(0xb7f9911f, 0x0, 0xb7f7c5ac, 0xb7f7c594, 0xa, 0xbfb013e8)  return value: 0xfffffffe
+mmap(0x0, 0x1000, 0x3, 0x22, 0xffffffff, 0x0)  return value: 0xad733000
+access(0xb7f9a4fc, 0x4, 0xb7f9a4fc, 0xb7fa2000, 0x0, 0xbfb014e8)  return value: 0xfffffffe
+open(0xb7f995c5, 0x80000, 0x0, 0xb7fa28cc, 0x1, 0xbfb00fd8)  return value: 0x3
+fstat64(0x3, 0xbfb00f00, 0xb7fa2000, 0xb7fa28cc, 0x1, 0xbfb00fd8)  return value: 0x0
+mmap(0x0, 0x15d03, 0x1, 0x2, 0x3, 0x0)  return value: 0xad6f1000
+close(0x3, 0x15d03, 0x3, 0xad6f1000, 0x1, 0xbfb00fd8)  return value: 0x0
+access(0xb7f9911f, 0x0, 0xb7fa2000, 0xb7fa1ea7, 0xb7fa2000, 0xbfb00fd8)  return value: 0xfffffffe
+open(0xad733190, 0x80000, 0x0, 0xbfb0101c, 0x0, 0xbfb00fc8)  return value: 0x3
+read(0x3, 0xbfb01020, 0x200, 0xbfb0101c, 0xbfb01020, 0xbfb00fc8)  return value: 0x200
+fstat64(0x3, 0xbfb00f40, 0xb7fa2000, 0x8048299, 0x3, 0xbfb00fb8)  return value: 0x0
+
+Similar output for all others have been validated successfully.
+
+------------------------------------------------
+  |     Security Application Part Output     |
+------------------------------------------------
+************************************
+Output for stack_analysis 
+************************************
+Command input: ./wrap stack_analysis <./hello_world | ./recursion <num> | /bin/ls | /bin/ls -l | echo | cat pin.log | firefox | gedit | wget http://www.stonybrook.edu 
+
+Tool: stack_analysis
+Command: ./hello_world
+Hello World!
+Stack size reached :2320 bytes
+
+Tool: stack_analysis
+Command: ./recursion_sum
+Command params: 10
+Sum upto number 10 is 55
+ Stack size reached :2304 bytes
+
+Tool: stack_analysis
+Command: ./recursion_sum
+Command params: 100
+Sum upto number 100 is 5050
+Stack size reached :3696 bytes
+
+Similrly for other options output have been validated.
+

@@ -1,0 +1,83 @@
+************************************
+Setup details
+************************************
+Pin Version: 3.13
+Pin Tool: /home/sekar/bhuvnesh/SystemSec/Assignment3/pin-3.13-98189-g60a6ef199-gcc-linux/
+
+set INTEL_JIT_PROFILER /home/sekar/bhuvnesh/SystemSec/Assignment3/pin-3.13-98189-g60a6ef199-gcc-linux/intel64/lib/libpinjitprofiling.so
+
+
+************************************
+Instructions to Run
+************************************
+1. Unzip tar
+2. Run 'make all'
+3. Set Pin Tool (if not set picking default path set in the ./wrap, please check)
+3. Usage: ./wrap <Tool name> <program name>
+
+* Tool name : { count_basic_block | count_malloc_mem_wrapper | count_control_flow | btrace | stack_analysis }
+
+* Program name : { ./hello_world | /bin/ls | /bin/ls -l | echo | cat pin.log | firefox | gedit | wget http://www.stonybrook.edu }
+
+***********************************
+Detailed Steps to run
+***********************************
+- First of all after untar the folder, run command 'make all'
+        This command will run make on all the files and create .so files for respective tools in obj-ia32 directory
+- Now execute each tool with any set of program as follows:
+        ./wrap <tool name> <program name>
+    eg. ./wrap count_basic_block ./hello_world
+        where,
+        ./wrap : is a top level wrapper which is used mainly for two purposes i.e.
+		 (i) setting Pin tool path (by default in ./wrap it is set as: pin_path="/home/sekar/bhuvnesh/SystemSec/Assignment3/pin-3.13-98189-g60a6ef199-gcc-linux/pin"
+		 (ii) automatically running tool based on the tool name i.e. appending "obj-ia32" prior to tool name & ".so" post to it to form the complete path for the .so file.
+		      Also in ./wrap $OUTF variable is set based on the tool to print the respective .out (like count_basic_block.out) on the screen
+        
+	count_basic_block : is a name of the tool
+
+	./hello_world : is the name of the program
+
+NOTE: Please pass on the name of the tool neither tool_name.cpp nor tool_name.so i.e. like for counting basic program of block tool is count_basic_block.cpp 
+      but in ./wrap count_basic_block is passed neither count_basic_block.cpp nor count_basic_block.so. ./wrap automatically takes care of it.
+
+************************************
+Details for the tools created
+************************************
+- count_basic_block : It is a pintool for counting the number of basic blocks executed by a program.
+                      Usage: ./wrap count_basic_block /bin/ls
+
+- count_malloc_mem_wrapper : It is a Pintool for wrapping calls to malloc i.e. it keeps track of the number of calls made to malloc
+			     and the total amount of memory allocated.
+			     Uage: ./wrap count_malloc_mem_wrapper firefox
+
+- count_control_flow : It is a Pintool to count (a) the number of direct control flow transfer instructions executed by a program, and 
+		                                (b) the number of indirect control flow transfers executed by a program
+			Usage: ./wrap count_control_flow cat pin.log
+
+- btrace : It is something similar to strace using binary instrumentation. Like strace, it prints the system call name, 
+           argument values (including file names) and return values/parameters.
+  	   Usage: ./wrap btrace ./hello_world
+
+- stack_analysis : It is a Pintool that measures the maximum stack used by a program
+      		   Usage: ./wrap stack_analysis ./recursion_sum 100
+
+
+****************************************
+List of the programs tools are tested
+****************************************
+- ./hello_world
+-  /bin/ls 
+-  /bin/ls -l 
+-  echo 
+-  cat pin.log 
+-  firefox 
+-  gedit 
+-  wget http://www.stonybrook.edu 
+
+NOTE: Outputs of tools and programs are in file named as "Outputs".
+
+
+References:
+
+- Pin tutorials
+- https://software.intel.com/sites/default/files/managed/62/f4/cgo2013.pdf

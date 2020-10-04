@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Setting outfile name (in program I have set default files names similar to program name
+# like for count_basic_block output is stored in count_basic_block.out
+
+OUTF=$1.out
+
+# Setting path for pin (by default assuming pin is present in same directory)
+# If not so please set the path here like below here
+
+pin_path="/home/sekar/bhuvnesh/SystemSec/Assignment3/pin-3.13-98189-g60a6ef199-gcc-linux/pin"
+
+if [ $# -eq 0 ]
+  then
+    echo "No arguments passed"
+fi
+
+if [ $# -eq 2 ] 
+then
+	echo Tool: $1
+	echo Command: $2
+	$pin_path -t obj-ia32/$1.so -- $2
+fi
+
+if [ $# -eq 3 ] 
+then
+	echo Tool: $1
+	echo Command: $2
+	echo Command params: $3
+	$pin_path -t obj-ia32/$1.so -- $2 $3
+fi
+
+cat $OUTF
+
+
